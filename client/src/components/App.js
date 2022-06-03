@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GlobalStyles from "./GlobalStyles";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Header from "./Header";
 import Footer from "./Footer";
+import GlobalStyles from "./GlobalStyles";
+import Navbar from "./Navbar";
 
 const App = () => {
   useEffect(() => {
@@ -15,19 +16,23 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <AppWrapper>
       <GlobalStyles />
       <Header />
       <Main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/nav" element={<Navbar />} />
         </Routes>
       </Main>
       <Footer />
-    </Router>
+    </AppWrapper>
   );
 };
 
+const AppWrapper = styled.div`
+  background-color: var(--secondary);
+`;
 const Main = styled.div`
   display: flex;
   flex-direction: column;
