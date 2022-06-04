@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Navbar from "./Navbar";
+import Anime from "./Pages/Anime";
 
 const App = () => {
   useEffect(() => {
@@ -21,8 +22,8 @@ const App = () => {
       <Header />
       <Main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/nav" element={<Navbar />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/anime/:mal_id" element={<Anime />} />
         </Routes>
       </Main>
       <Footer />
