@@ -8,10 +8,14 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <Container>
-        <Menu />
-        <Logo />
-        <Search />
-        <User />
+        <Left>
+          <Menu />
+          <Logo />
+        </Left>
+        <Right>
+          <Search />
+          <User />
+        </Right>
       </Container>
     </HeaderWrapper>
   );
@@ -31,6 +35,19 @@ const Container = styled.div`
   min-width: 80%;
   max-width: 1800px;
   height: ;
+`;
+
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+  width: 50%;
+`;
+const Right = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  gap: 20px;
 `;
 
 export default Header;

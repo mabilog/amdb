@@ -17,8 +17,6 @@ const SearchWrapper = styled.form`
   background-color: var(--gray-dark);
   border-radius: 20px;
   height: 75%;
-  width: calc(100% / 3);
-  max-width: 300px;
 `;
 const Input = styled.input`
   width: 75%;
@@ -29,6 +27,8 @@ const Input = styled.input`
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  color: var(--white);
+  padding-left: 20px;
   &:focus {
     outline: none;
   }
