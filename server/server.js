@@ -5,13 +5,14 @@ const PORT = 8000;
 const express = require("express");
 const morgan = require("morgan");
 
-const { getSchedule } = require("./apihandlers");
+const { getAnime, getSchedule } = require("./apihandlers");
 
 express()
   .use(morgan("tiny"))
   .use(express.json())
 
-  .get("/api/getSchedule/:day", getSchedule)
+  .get("/animeApi/getSchedule/:day", getSchedule)
+  .get("/animeApi/getAnime/:mal_id", getAnime)
 
   .get("*", (req, res) => {
     res.status(400).json({

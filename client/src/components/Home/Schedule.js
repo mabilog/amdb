@@ -17,7 +17,7 @@ const Schedule = () => {
   const day = weekday[new Date().getDay()];
 
   useEffect(() => {
-    fetch(`/api/getSchedule/${day}`)
+    fetch(`/animeApi/getSchedule/${day}`)
       .then((res) => res.json())
       .then((data) => setAnimes(data.data.data));
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -8,13 +8,6 @@ import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 
 const App = () => {
-  // useEffect(() => {
-  //   console.log("this is the useEffect");
-  //   fetch("/api/test")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // }, []);
-
   return (
     <AppWrapper>
       <GlobalStyles />

@@ -1,5 +1,19 @@
+const jikan = require("@mateoaranda/jikanjs");
 const jikanjs = require("@mateoaranda/jikanjs");
 
+const getAnime = async (req, res) => {
+  try {
+    const { mal_id } = req.params;
+    const anime = await jikan.loadAnime(mal_id);
+    res.status(200).json({
+      status: 200,
+      data: anime,
+      message: "Successfully provided anime request",
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 const getSchedule = async (req, res) => {
   try {
     const { day } = req.params;
@@ -18,4 +32,4 @@ const getSchedule = async (req, res) => {
     });
   }
 };
-module.exports = { getSchedule };
+module.exports = { getAnime, getSchedule };
