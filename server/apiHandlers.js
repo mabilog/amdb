@@ -1,27 +1,21 @@
 const jikanjs = require("@mateoaranda/jikanjs");
 
-const getTest = async (req, res) => {
-  // res.status(200).json({
-  //   status: 200,
-  //   data: "hello from the other side",
-  // });
+const getSchedule = async (req, res) => {
   try {
-    const { mal_id } = req.params;
-    console.log(req.query);
-    const anime = await jikanjs.loadAnime(mal_id);
-    // const anime = mal_id;
-    console.log(anime);
+    const { day } = req.params;
+    const animes = await jikanjs.loadSchedule(day);
 
-    res
-      .status(200)
-      .json({ status: 200, data: anime, message: "hello from the other side" });
+    res.status(200).json({
+      status: 200,
+      data: animes,
+      message: `Today's day of the week is ${day}`,
+    });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       status: 500,
-      message: "Something happened",
+      message: "Something went wrong when retrieving recent episodes",
     });
   }
 };
-
-module.exports = { getTest };
+module.exports = { getSchedule };

@@ -18,6 +18,7 @@ const reducer = (state, action) => {
       throw new Error("Something went wrong");
   }
 };
+
 const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 

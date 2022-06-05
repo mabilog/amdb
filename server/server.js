@@ -5,12 +5,13 @@ const PORT = 8000;
 const express = require("express");
 const morgan = require("morgan");
 
-const { getTest } = require("./apihandlers");
+const { getSchedule } = require("./apihandlers");
 
 express()
   .use(morgan("tiny"))
   .use(express.json())
-  .get("/api/test/:mal_id", getTest)
+
+  .get("/api/getSchedule/:day", getSchedule)
 
   .get("*", (req, res) => {
     res.status(400).json({
