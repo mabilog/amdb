@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 
 import styled from "styled-components";
-import AnimeCard from "./AnimeCard";
+
+// import AnimeCard from "./AnimeCard";
+import AnimeList from "./AnimeList";
+import Pagination from "../Pagination";
 
 const Schedule = () => {
-  const [animes, setAnimes] = useState();
+  const [animes, setAnimes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+
   const weekday = [
     "sunday",
     "monday",
@@ -17,16 +24,26 @@ const Schedule = () => {
   const day = weekday[new Date().getDay()];
 
   useEffect(() => {
-    fetch(`/animeApi/getSchedule/${day}`)
-      .then((res) => res.json())
-      .then((data) => setAnimes(data.data.data));
+    const fetchAnime = async () => {
+      setLoading(true);
+      fetch(`/animeApi/getSchedule/${day}`)
+        .then((res) => res.json())
+        .then((data) => setAnimes(data.data.data))
+        .then(() => setLoading(false));
+    };
+    fetchAnime();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(animes);
-  }, [animes]);
+  // Get Current Post
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPost = animes.slice(indexOfFirstPost, indexOfLastPost);
 
+  // Change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <ScheduleWrapper>
       <TopWrapper>
@@ -34,9 +51,12 @@ const Schedule = () => {
         <p>{day}</p>
       </TopWrapper>
       <BottomWrapper>
-        {animes?.map((anime) => (
-          <AnimeCard anime={anime} key={anime.mal_id} />
-        ))}
+        <AnimeList animes={currentPost} loading={loading} />
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPost={animes.length}
+          paginate={paginate}
+        />
       </BottomWrapper>
     </ScheduleWrapper>
   );
@@ -53,7 +73,9 @@ const TopWrapper = styled.div`
 
 const BottomWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* min-height: 300px; */
   gap: 5px;
 `;
+
 export default Schedule;

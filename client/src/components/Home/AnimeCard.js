@@ -3,24 +3,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 const AnimeCard = ({ anime }) => {
   return (
-    <AnimeCardWrapper
-      image={anime.images.jpg.image_url}
-      to={`/anime/${anime.mal_id}`}
-    >
-      {/* // <AnimeCardWrapper> */}
-      <InfoWrapper>
-        <h3>{anime.title}</h3>
-      </InfoWrapper>
-      {/* <img src={anime.images.jpg.image_url} alt="" srcset="" /> */}
+    <AnimeCardWrapper>
+      <Link to={`/anime/${anime.mal_id}`}>
+        <Title>{anime.title}</Title>
+        <Image src={anime.images.jpg.image_url} alt={anime.title} />
+      </Link>
     </AnimeCardWrapper>
   );
 };
 
-const AnimeCardWrapper = styled(Link)`
+// const AnimeCardWrapper = styled(Link)`
+const AnimeCardWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  /* text-decoration: none;
   background: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
@@ -31,16 +28,17 @@ const AnimeCardWrapper = styled(Link)`
     div {
       display: block;
     }
-  }
+  } */
 `;
 
-const InfoWrapper = styled.div`
-  display: none;
-  /* width: 100%;
-  height: 100%; */
-  /* background-color: var(--dark); */
-  background-size: cover;
-  /* color: var(--purple); */
-  /* opacity: 0.5; */
+const Title = styled.h3`
+  display: block;
+  position: relative;
+  bottom: 0;
+  font-size: 12px;
+`;
+
+const Image = styled.img`
+  width: 150px;
 `;
 export default AnimeCard;
