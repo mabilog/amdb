@@ -12,33 +12,25 @@ const AnimeCard = ({ anime }) => {
   );
 };
 
-// const AnimeCardWrapper = styled(Link)`
 const AnimeCardWrapper = styled.div`
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  /* text-decoration: none;
-  background: url(${(props) => props.image});
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 300px;
-  width: 225px;
-  color: var(--purple);
-  &:hover {
-    div {
-      display: block;
-    }
-  } */
+  /* align-items: center; */
+  /* justify-content: center; */
+  width: 150px;
 `;
 
 const Title = styled.h3`
   display: block;
-  position: relative;
+  position: absolute;
   bottom: 0;
   font-size: 12px;
 `;
 
 const Image = styled.img`
   width: 150px;
+  &:hover {
+    opacity: 0.4;
+  }
 `;
 export default AnimeCard;

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-const Pagination = ({ postsPerPage, totalPost, paginate }) => {
+const Pagination = ({ postsPerPage, totalPost, paginate, currentPage }) => {
   const pageNumbers = [];
-
+  console.log(currentPage);
   for (let i = 1; i <= Math.ceil(totalPost / postsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -13,7 +13,10 @@ const Pagination = ({ postsPerPage, totalPost, paginate }) => {
         {pageNumbers.map((number) => {
           return (
             <List key={number}>
-              <PageNumber href="!#" onClick={() => paginate(number)}>
+              <PageNumber
+                onClick={() => paginate(number)}
+                active={currentPage === number}
+              >
                 {number}
               </PageNumber>
             </List>
@@ -32,19 +35,27 @@ const PageList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 `;
 
 const List = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: 
   aspect-ratio: 1/1;
   width: 20px;
 `;
 
 const PageNumber = styled.button`
-  text-decoration: none;
+  background-color: var(--dark);
+  border: 1px solid var(--gray);
+  font-size: 16px;
+  padding: 5px;
+
   color: var(--white);
+  cursor: pointer;
+  &:active {
+    background-color: var(--primary);
+  }
 `;
 export default Pagination;

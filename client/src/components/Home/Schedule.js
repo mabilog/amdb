@@ -10,7 +10,7 @@ const Schedule = () => {
   const [animes, setAnimes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   const weekday = [
     "sunday",
@@ -56,6 +56,7 @@ const Schedule = () => {
           postsPerPage={postsPerPage}
           totalPost={animes.length}
           paginate={paginate}
+          currentPage={currentPage}
         />
       </BottomWrapper>
     </ScheduleWrapper>
