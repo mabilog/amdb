@@ -4,8 +4,19 @@ const AnimeDetails = ({ anime }) => {
   console.log(anime);
   return (
     <AnimeDetailsWrapper>
-      <h1>{anime.title}</h1>
-      <h2>{anime.title_english}</h2>
+      <Top>
+        <h1>{anime.title}</h1>
+        <h2>{anime.title_english}</h2>
+        <iframe
+          src={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}
+          width="560"
+          height="315"
+          title={anime.title}
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      </Top>
+
       <Description>
         <Left>
           <Text>score</Text>
@@ -15,18 +26,19 @@ const AnimeDetails = ({ anime }) => {
         <Center>
           <TopCenter>
             <div>
-              <p>Ranked: #{anime.rank}</p>
+              <span>Ranked: </span>
+              <p>#{anime.rank}</p>
             </div>
             <div>
-              <p>Popularity: #{anime.popularity}</p>
+              <span>Popularity: </span>
+              <p>#{anime.popularity}</p>
             </div>
             <div>
-              <p>Members: #{anime.members}</p>
+              <span>Members</span>
+              <p> {anime.members}</p>
             </div>
           </TopCenter>
-          <BottomCenter></BottomCenter>
         </Center>
-        <Right></Right>
       </Description>
     </AnimeDetailsWrapper>
   );
@@ -39,9 +51,18 @@ const AnimeDetailsWrapper = styled.div`
   }
 `;
 
+const Top = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  iframe {
+    margin: 30px auto;
+  }
+`;
+
 const Description = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 2fr;
 `;
 
 const Left = styled.div`
@@ -49,7 +70,6 @@ const Left = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width: 100px; */
 `;
 
 const Text = styled.p`
@@ -64,15 +84,23 @@ const Score = styled.p`
 `;
 const Center = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
 `;
 
 const TopCenter = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: space-around;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
 `;
-const BottomCenter = styled.div``;
-const Right = styled.div``;
+
 export default AnimeDetails;

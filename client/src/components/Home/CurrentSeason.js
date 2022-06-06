@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import AnimeList from "./AnimeList";
 import Pagination from "../Pagination";
+import Spinner from "../Spinner";
 const CurrentSeason = () => {
   const [animes, setAnimes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -39,13 +40,19 @@ const CurrentSeason = () => {
         <h2>Seasonal Animes</h2>
       </TopWrapper>
       <BottomWrapper>
-        <AnimeList animes={currentPost} loading={loading} />
-        <Pagination
-          postsPerPage={postsPerPage}
-          totalPost={animes.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
+        {animes ? (
+          <>
+            <AnimeList animes={currentPost} loading={loading} />
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPost={animes.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          </>
+        ) : (
+          <Spinner />
+        )}
       </BottomWrapper>
     </CurrentSeasonWrapper>
   );
@@ -60,6 +67,8 @@ const TopWrapper = styled.div`
 `;
 
 const BottomWrapper = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   /* min-height: 300px; */
