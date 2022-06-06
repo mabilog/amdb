@@ -4,7 +4,7 @@ import styled from "styled-components";
 const AnimeCard = ({ anime }) => {
   return (
     <AnimeCardWrapper>
-      <Link to={`/anime/${anime.mal_id}`}>
+      <Link to={`/anime/${anime.mal_id}/`}>
         <Title>{anime.title}</Title>
         <Image src={anime.images.jpg.image_url} alt={anime.title} />
       </Link>

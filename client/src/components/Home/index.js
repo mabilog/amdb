@@ -1,12 +1,15 @@
 import styled from "styled-components";
+import AnimeRecommendation from "./AnimeRecommendation";
+import CurrentSeason from "./CurrentSeason";
 import Schedule from "./Schedule";
 
 const Home = () => {
   return (
     <HomeWrapper>
       <div>Carousel</div>
+      <CurrentSeason />
       <Schedule />
-      <div>Schedule</div>
+      <AnimeRecommendation />
     </HomeWrapper>
   );
 };

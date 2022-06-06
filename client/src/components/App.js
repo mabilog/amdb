@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
+import Manga from "./Pages/Manga";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/anime/:mal_id" element={<Anime />} />
+          <Route path="/manga" element={<Manga />} />
         </Routes>
       </Main>
       <Footer />

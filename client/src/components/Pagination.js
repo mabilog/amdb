@@ -15,7 +15,7 @@ const Pagination = ({ postsPerPage, totalPost, paginate, currentPage }) => {
             <List key={number}>
               <PageNumber
                 onClick={() => paginate(number)}
-                active={currentPage === number}
+                selected={currentPage === number}
               >
                 {number}
               </PageNumber>
@@ -54,7 +54,7 @@ const PageNumber = styled.button`
 
   color: var(--white);
   cursor: pointer;
-  &:active {
+  &selected {
     background-color: var(--primary);
   }
 `;
