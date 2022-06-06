@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 const Anime = () => {
   const [anime, setAnime] = useState();
-
   const { mal_id } = useParams();
+
+  console.log(anime);
   useEffect(() => {
     // console.log(mal_id)
     fetch(`/animeApi/getAnime/${mal_id}`)
