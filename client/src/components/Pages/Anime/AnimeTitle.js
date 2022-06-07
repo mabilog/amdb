@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AnimeContext } from "./AnimeContext";
 import styled from "styled-components";
+import ReactPlayer from "react-player";
 const AnimeTitle = () => {
   const { anime } = useContext(AnimeContext);
 
@@ -15,7 +16,11 @@ const AnimeTitle = () => {
         title={anime.title}
         frameBorder="0"
         allowFullScreen
+        encrypted-media
       ></iframe>
+      {/* <ReactPlayer
+        url={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}
+      /> */}
     </AnimeTitleWrapper>
   );
 };

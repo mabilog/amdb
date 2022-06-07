@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import Spinner from "../../Spinner";
 import AnimeDetails from "./AnimeDetails";
 import AnimeSide from "./AnimeSide";
 import { AnimeContext } from "./AnimeContext";
@@ -14,9 +13,7 @@ const Anime = () => {
           <AnimeSide anime={anime} />
           <AnimeDetails />
         </Middle>
-      ) : (
-        <Spinner />
-      )}
+      ) : null}
     </AnimeWrapper>
   );
 };

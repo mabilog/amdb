@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 export const GlobalContext = createContext(null);
 
@@ -20,8 +20,11 @@ const reducer = (state, action) => {
 };
 
 const GlobalProvider = ({ children }) => {
+  const [search, setSearch] = useState();
+  const [searchResult, setSearchResult] = useState();
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // useEffect();
   const changeGreeting = (data) => {
     dispatch({ type: "change-greeting", data });
   };
@@ -33,6 +36,10 @@ const GlobalProvider = ({ children }) => {
         actions: {
           changeGreeting,
         },
+        search,
+        setSearch,
+        searchResult,
+        setSearchResult,
       }}
     >
       {children}

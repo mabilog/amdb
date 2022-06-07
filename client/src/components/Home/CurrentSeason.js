@@ -26,7 +26,9 @@ const CurrentSeason = () => {
     </CurrentSeasonWrapper>
   );
 };
-const CurrentSeasonWrapper = styled.div``;
+const CurrentSeasonWrapper = styled.div`
+  height: 100%;
+`;
 
 const TopWrapper = styled.div`
   display: flex;

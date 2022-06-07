@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
+import Search from "./Pages/Search";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/anime/:mal_id" element={<Anime />} />
           <Route path="/manga" element={<Manga />} />
+          <Route path="/search/" element={<Search />} />
         </Routes>
       </Main>
       <Footer />

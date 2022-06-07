@@ -29,6 +29,8 @@ const Pagination = ({ postsPerPage, totalPost, paginate, currentPage }) => {
 
 const PaginationWrapper = styled.div`
   display: flex;
+  height: 100%;
+  padding: 10px;
 `;
 
 const PageList = styled.ul`

@@ -7,6 +7,7 @@ import { AnimeContext } from "./AnimeContext";
 const AnimeVA = () => {
   const { voiceActors } = useContext(AnimeContext);
 
+  console.log(voiceActors);
   return (
     <AnimeVAWrapper>
       <ul>
@@ -25,9 +26,12 @@ const AnimeVA = () => {
               </div>
               <div>
                 <VAWrapper>
-                  <Link to={`/person/${actor.voice_actors[0].person.mal_id}`}>
+                  <a
+                    href={actor.voice_actors[0].person.url}
+                    key={actor.voice_actors[0].person.name}
+                  >
                     {actor.voice_actors[0].person.name}
-                  </Link>
+                  </a>
                 </VAWrapper>
                 <img
                   src={actor.voice_actors[0].person.images.jpg.image_url}
@@ -73,6 +77,10 @@ const AnimeVAWrapper = styled.div`
 const VAWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  a {
+    text-decoration: none;
+    color: var(--white);
+  }
 `;
 
 const CharWrapper = styled.div`

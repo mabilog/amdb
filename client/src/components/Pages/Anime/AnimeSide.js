@@ -49,14 +49,12 @@ const AnimeSide = () => {
 
       <div>
         <span>Producers:</span>
+
         {anime.producers.map((producer) => {
           return (
-            <Link
-              to={`/anime/producer/${producer.mal_id}/${producer.name}`}
-              key={producer.name}
-            >
+            <a href={producer.url} key={producer.name}>
               {producer.name}
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -64,12 +62,9 @@ const AnimeSide = () => {
         <span>Licensors:</span>
         {anime.licensors.map((licensor) => {
           return (
-            <Link
-              to={`/anime/producer/${licensor.mal_id}/${licensor.name}`}
-              key={licensor.name}
-            >
+            <a href={licensor.url} key={licensor.name}>
               {licensor.name}
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -77,12 +72,9 @@ const AnimeSide = () => {
         <span>Studios:</span>
         {anime.studios.map((studio) => {
           return (
-            <Link
-              to={`/anime/producer/${studio.mal_id}/${studio.name}`}
-              key={studio.name}
-            >
+            <a href={studio.url} key={studio.name}>
               {studio.name}
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -94,12 +86,9 @@ const AnimeSide = () => {
         <span>Genres</span>
         {anime.genres.map((genre) => {
           return (
-            <Link
-              to={`/anime/genre/${genre.mal_id}/${genre.name}`}
-              key={genre.name}
-            >
+            <a href={genre.url} key={genre.name}>
               {genre.name}
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -107,12 +96,9 @@ const AnimeSide = () => {
         <span>Theme: </span>
         {anime.themes.map((theme) => {
           return (
-            <Link
-              to={`/anime/genre/${theme.mal_id}/${theme.name}`}
-              key={theme.name}
-            >
+            <a href={theme.url} key={theme.name}>
               {theme.name}
-            </Link>
+            </a>
           );
         })}
       </div>

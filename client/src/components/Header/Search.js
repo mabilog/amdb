@@ -1,11 +1,28 @@
+import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../GlobalContext";
+
 const Search = () => {
+  const { search, setSearch, setSearchResult } = useContext(GlobalContext);
+
+  const navigate = useNavigate();
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    fetch(`/animeApi/getSearch/${search}`)
+      .then((res) => res.json())
+      .then((data) => setSearchResult(data.anime.data))
+      .then(() => navigate("/search"));
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   return (
-    <SearchWrapper>
-      <Input />
-      <SearchButton>
+    <SearchWrapper onSubmit={(e) => handleOnSubmit(e)}>
+      <Input onChange={(e) => setSearch(e.target.value)} />
+      <SearchButton type="submit">
         <FaSearch />
       </SearchButton>
     </SearchWrapper>

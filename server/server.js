@@ -6,13 +6,14 @@ const express = require("express");
 const morgan = require("morgan");
 
 const {
-  getSchedule,
-  getCurrentSeason,
   getAnime,
-  getRecommendation,
-  getManga,
   getAnimeQuery,
   getAnimeCharacters,
+  getCurrentSeason,
+  getSchedule,
+  getRecommendation,
+  getManga,
+  getSearch,
 } = require("./apiHandlers");
 
 express()
@@ -27,6 +28,8 @@ express()
   .get("/animeApi/getCurrentSeason", getCurrentSeason)
   .get("/animeApi/getRecommendation", getRecommendation)
   .get("/animeApi/getManga", getManga)
+
+  .get("/animeApi/getSearch/:q", getSearch)
   .get("*", (req, res) => {
     res.status(400).json({
       status: 400,

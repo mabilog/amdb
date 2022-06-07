@@ -11,11 +11,7 @@ const AnimeProvider = ({ children }) => {
 
   useEffect(() => {
     // fetching anime info
-    fetch(`/animeApi/getAnime/${mal_id}`, {
-      method: "GET",
-      mode: "no-cors",
-      credentials: "same-origin",
-    })
+    fetch(`/animeApi/getAnime/${mal_id}`)
       .then((res) => res.json())
       .then((data) => setAnime(data.anime.data));
 

@@ -21,5 +21,6 @@ const HomeWrapper = styled.div`
   width: 90%;
   max-width: 1800px;
   margin: 0 auto;
+  gap: 20px;
 `;
 export default Home;
