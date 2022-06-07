@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import AnimeVA from "./AnimeVA";
 
 const AnimeDetails = ({ anime }) => {
-  console.log(anime);
   return (
     <AnimeDetailsWrapper>
       <Top>
@@ -18,28 +18,29 @@ const AnimeDetails = ({ anime }) => {
       </Top>
 
       <Description>
-        <Left>
+        <ScoreWrapper>
           <Text>score</Text>
           <Score>{anime.score}</Score>
           <span>{anime.scored_by} users</span>
-        </Left>
+        </ScoreWrapper>
         <Center>
-          <TopCenter>
-            <div>
-              <span>Ranked: </span>
-              <p>#{anime.rank}</p>
-            </div>
-            <div>
-              <span>Popularity: </span>
-              <p>#{anime.popularity}</p>
-            </div>
-            <div>
-              <span>Members</span>
-              <p> {anime.members}</p>
-            </div>
-          </TopCenter>
+          <div>
+            <span>Ranked: </span>
+            <p>#{anime.rank}</p>
+          </div>
+          <div>
+            <span>Popularity: </span>
+            <p>#{anime.popularity}</p>
+          </div>
+          <div>
+            <span>Members</span>
+            <p> {anime.members}</p>
+          </div>
         </Center>
       </Description>
+      <Bottom>
+        <AnimeVA anime={anime} />
+      </Bottom>
     </AnimeDetailsWrapper>
   );
 };
@@ -65,7 +66,7 @@ const Description = styled.div`
   grid-template-columns: 1fr 2fr;
 `;
 
-const Left = styled.div`
+const ScoreWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,11 +83,8 @@ const Score = styled.p`
   background-color: initial;
   font-size: 36px;
 `;
-const Center = styled.div`
-  display: flex;
-`;
 
-const TopCenter = styled.div`
+const Center = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -101,6 +99,10 @@ const TopCenter = styled.div`
       font-weight: 600;
     }
   }
+`;
+
+const Bottom = styled.div`
+  width: 100%;
 `;
 
 export default AnimeDetails;

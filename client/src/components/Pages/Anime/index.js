@@ -44,14 +44,9 @@ const AnimeWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Top = styled.h1``;
-
 const Middle = styled.div`
   display: grid;
   grid-template-columns: 33% 66%;
 `;
-
-const Center = styled.div``;
-const Right = styled.div``;
 
 export default Anime;

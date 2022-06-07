@@ -38,7 +38,7 @@ const getAnimeQuery = async (req, res) => {
       `https://api.jikan.moe/v4/anime/${mal_id}/${query}`
     );
     const queryData = await queryResponse.json();
-    console.log(queryData);
+    // console.log(queryData);
     queryData
       ? res.status(200).json({
           status: 200,
@@ -54,6 +54,34 @@ const getAnimeQuery = async (req, res) => {
     res.status(500).json({
       status: 500,
       message: `Something went wrong while requesting ${query} details`,
+    });
+  }
+};
+const getAnimeCharacters = async (req, res) => {
+  const { mal_id } = req.params;
+  try {
+    const queryResponse = await fetch(
+      `https://api.jikan.moe/v4/anime/${mal_id}/characters`
+    );
+    const queryData = await queryResponse.json();
+
+    const data = queryData.data.slice(0, 6);
+    console.log(data);
+    data
+      ? res.status(200).json({
+          status: 200,
+          data,
+          message: "Successfully provided character request",
+        })
+      : res.status(500).json({
+          status: 500,
+          message: "Something went wrong while requesting character details",
+        });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      status: 500,
+      message: "Something went wrong while requesting character details",
     });
   }
 };
@@ -161,4 +189,5 @@ module.exports = {
   getSchedule,
   getRecommendation,
   getManga,
+  getAnimeCharacters,
 };

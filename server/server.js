@@ -12,6 +12,7 @@ const {
   getRecommendation,
   getManga,
   getAnimeQuery,
+  getAnimeCharacters,
 } = require("./apiHandlers");
 
 express()
@@ -20,6 +21,8 @@ express()
 
   .get("/animeApi/getAnime/:mal_id", getAnime)
   .get("/animeApi/getAnime/:mal_id/:query", getAnimeQuery)
+  // .get("/animeApi/getAnimeCharacters/:mal_id/", getAnimeCharacters)
+
   .get("/animeApi/getSchedule/:day", getSchedule)
   .get("/animeApi/getCurrentSeason", getCurrentSeason)
   .get("/animeApi/getRecommendation", getRecommendation)
