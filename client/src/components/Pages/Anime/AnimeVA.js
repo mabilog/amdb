@@ -1,61 +1,42 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-const AnimeVA = ({ anime }) => {
-  const [voiceActors, setVoiceActors] = useState();
-  const [japVa, setJapVa] = useState();
-  useEffect(() => {
-    fetch(`/animeApi/getAnime/${anime.mal_id}/characters`)
-      .then((res) => res.json())
-      .then((data) => setVoiceActors(data.queryData.data.slice(0, 6)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  useEffect(() => {
-    if (voiceActors) {
-      const japaneseVa = voiceActors.map((actor) => {
-        return actor.voice_actors.find((va) => va.language === "Japanese");
-        // return actor.voiceActors.filter(
-        //   (voice_actors) => voice_actors.language === "Japanese"
-        // );
-      });
-      setJapVa(japaneseVa);
-    }
-  }, [voiceActors]);
+import { AnimeContext } from "./AnimeContext";
 
-  console.log(japVa);
+const AnimeVA = () => {
+  const { voiceActors } = useContext(AnimeContext);
+
   return (
     <AnimeVAWrapper>
       <ul>
-        {voiceActors?.map((actor) => (
-          <li key={actor.character.name}>
-            <div>
-              <img
-                src={actor.character.images.jpg.image_url}
-                alt={actor.character.name}
-              />
-              <span>{actor.role}</span>
-            </div>
-            {japVa?.filter((va) => {
-              console.log(va);
-              return (
-                <div>
-                  <NameWrapper>
-                    <Link to={`/person/${va.person.mal_id}`}>
-                      {va.person.name}
-                    </Link>
-                    <span>{va.language}</span>
-                  </NameWrapper>
-                  <img
-                    src={va.person.images.jpg.image_url}
-                    alt={va.person.name}
-                  />
-                </div>
-                // <></>
-              );
-            })}
-          </li>
-        ))}
+        {voiceActors?.map((actor) => {
+          return (
+            <li key={actor.character.name}>
+              <div>
+                <img
+                  src={actor.character.images.jpg.image_url}
+                  alt={actor.character.name}
+                />
+                <CharWrapper>
+                  <h6>{actor.character.name}</h6>
+                  <span>{actor.role}</span>
+                </CharWrapper>
+              </div>
+              <div>
+                <VAWrapper>
+                  <Link to={`/person/${actor.voice_actors[0].person.mal_id}`}>
+                    {actor.voice_actors[0].person.name}
+                  </Link>
+                </VAWrapper>
+                <img
+                  src={actor.voice_actors[0].person.images.jpg.image_url}
+                  alt={actor.voice_actors[0].person.name}
+                />
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </AnimeVAWrapper>
   );
@@ -89,8 +70,16 @@ const AnimeVAWrapper = styled.div`
   }
 `;
 
-const NameWrapper = styled.div`
+const VAWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const CharWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: left; */
+`;
+
 export default AnimeVA;

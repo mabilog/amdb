@@ -1,18 +1,13 @@
-const jikan = require("@mateoaranda/jikanjs");
-const jikanjs = require("@mateoaranda/jikanjs");
-
 const fetch = require("node-fetch");
-// import fetch from "node-fetch";
+
 const getAnime = async (req, res) => {
   const { mal_id } = req.params;
-  console.log(mal_id);
   try {
     const animeResponse = await fetch(
       `https://api.jikan.moe/v4/anime/${mal_id}/`
     );
     const anime = await animeResponse.json();
 
-    console.log(anime);
     anime
       ? res.status(200).json({
           status: 200,
@@ -38,7 +33,6 @@ const getAnimeQuery = async (req, res) => {
       `https://api.jikan.moe/v4/anime/${mal_id}/${query}`
     );
     const queryData = await queryResponse.json();
-    // console.log(queryData);
     queryData
       ? res.status(200).json({
           status: 200,
@@ -66,7 +60,6 @@ const getAnimeCharacters = async (req, res) => {
     const queryData = await queryResponse.json();
 
     const data = queryData.data.slice(0, 6);
-    console.log(data);
     data
       ? res.status(200).json({
           status: 200,
@@ -89,7 +82,8 @@ const getAnimeCharacters = async (req, res) => {
 const getSchedule = async (req, res) => {
   try {
     const { day } = req.params;
-    const animes = await jikanjs.loadSchedule(day);
+    const response = await fetch(`https://api.jikan.moe/v4/schedules/${day}`);
+    const animes = await response.json();
 
     animes
       ? res.status(200).json({
@@ -112,7 +106,8 @@ const getSchedule = async (req, res) => {
 
 const getCurrentSeason = async (req, res) => {
   try {
-    const animes = await jikanjs.loadCurrentSeason();
+    const response = await fetch("https://api.jikan.moe/v4/seasons/now");
+    const animes = await response.json();
 
     animes
       ? res.status(200).json({
@@ -136,7 +131,10 @@ const getCurrentSeason = async (req, res) => {
 
 const getRecommendation = async (req, res) => {
   try {
-    const animes = await jikanjs.loadRecommendations("anime");
+    const response = await fetch(
+      "https://api.jikan.moe/v4/recommendations/anime"
+    );
+    const animes = await response.json();
 
     animes
       ? res.status(200).json({

@@ -1,5 +1,10 @@
+import { useContext } from "react";
+import { AnimeContext } from "./AnimeContext";
 import styled from "styled-components";
-const AnimeSide = ({ anime }) => {
+import { Link } from "react-router-dom";
+const AnimeSide = () => {
+  const { anime } = useContext(AnimeContext);
+
   return (
     <AnimeSideWrapper>
       <img src={anime.images.jpg.large_image_url} alt={anime.title} />
@@ -17,9 +22,7 @@ const AnimeSide = ({ anime }) => {
       <h2>Information</h2>
       <div>
         <span>Type:</span>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          {anime.type}
-        </a>
+        <p>{anime.type}</p>
       </div>
       <div>
         <span>Episodes:</span>
@@ -35,9 +38,9 @@ const AnimeSide = ({ anime }) => {
       </div>
       <div>
         <span>Premiered:</span>
-        <a href={`/anime/season/${anime.year}/${anime.season}`}>
+        <Link to={`/anime/season/${anime.year}/${anime.season}`}>
           {anime.season} {anime.year}
-        </a>
+        </Link>
       </div>
       <div>
         <span>Broadcast:</span>
@@ -48,12 +51,12 @@ const AnimeSide = ({ anime }) => {
         <span>Producers:</span>
         {anime.producers.map((producer) => {
           return (
-            <a
-              href={`/anime/producer/${producer.mal_id}/${producer.name}`}
+            <Link
+              to={`/anime/producer/${producer.mal_id}/${producer.name}`}
               key={producer.name}
             >
               {producer.name}
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -61,12 +64,12 @@ const AnimeSide = ({ anime }) => {
         <span>Licensors:</span>
         {anime.licensors.map((licensor) => {
           return (
-            <a
-              href={`/anime/producer/${licensor.mal_id}/${licensor.name}`}
+            <Link
+              to={`/anime/producer/${licensor.mal_id}/${licensor.name}`}
               key={licensor.name}
             >
               {licensor.name}
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -74,12 +77,12 @@ const AnimeSide = ({ anime }) => {
         <span>Studios:</span>
         {anime.studios.map((studio) => {
           return (
-            <a
-              href={`/anime/producer/${studio.mal_id}/${studio.name}`}
+            <Link
+              to={`/anime/producer/${studio.mal_id}/${studio.name}`}
               key={studio.name}
             >
               {studio.name}
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -91,12 +94,12 @@ const AnimeSide = ({ anime }) => {
         <span>Genres</span>
         {anime.genres.map((genre) => {
           return (
-            <a
-              href={`/anime/genre/${genre.mal_id}/${genre.name}`}
+            <Link
+              to={`/anime/genre/${genre.mal_id}/${genre.name}`}
               key={genre.name}
             >
               {genre.name}
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -104,12 +107,12 @@ const AnimeSide = ({ anime }) => {
         <span>Theme: </span>
         {anime.themes.map((theme) => {
           return (
-            <a
-              href={`/anime/genre/${theme.mal_id}/${theme.name}`}
+            <Link
+              to={`/anime/genre/${theme.mal_id}/${theme.name}`}
               key={theme.name}
             >
               {theme.name}
-            </a>
+            </Link>
           );
         })}
       </div>

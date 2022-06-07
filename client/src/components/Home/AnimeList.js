@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 import AnimeCard from "./AnimeCard";
-import Spinner from "../Spinner";
-const AnimeList = ({ animes, loading }) => {
-  if (loading) return <Spinner />;
+const AnimeList = ({ animes }) => {
   return (
     <AnimeListWrapper>
       {animes?.map((anime) => (
