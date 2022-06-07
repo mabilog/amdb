@@ -36,22 +36,22 @@ const AnimeVA = ({ anime }) => {
               />
               <span>{actor.role}</span>
             </div>
-            {japVa?.map((va) => {
+            {japVa?.filter((va) => {
               console.log(va);
               return (
-                // <div>
-                //   <NameWrapper>
-                //     <Link to={`/person/${va.person.mal_id}`}>
-                //       {va.person.name}
-                //     </Link>
-                //     <span>{va.language}</span>
-                //   </NameWrapper>
-                //   <img
-                //     src={va.person.images.jpg.image_url}
-                //     alt={va.person.name}
-                //   />
-                // </div>
-                <></>
+                <div>
+                  <NameWrapper>
+                    <Link to={`/person/${va.person.mal_id}`}>
+                      {va.person.name}
+                    </Link>
+                    <span>{va.language}</span>
+                  </NameWrapper>
+                  <img
+                    src={va.person.images.jpg.image_url}
+                    alt={va.person.name}
+                  />
+                </div>
+                // <></>
               );
             })}
           </li>
