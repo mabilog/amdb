@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import AnimePagination from "./AnimePagination";
+// import AnimePagination from "./AnimePagination";
+import AnimePagination from "../Cards/AnimePagination";
 
 const CurrentSeason = () => {
   const [animes, setAnimes] = useState([]);
@@ -22,7 +23,7 @@ const CurrentSeason = () => {
       <TopWrapper>
         <h2>Seasonal Animes</h2>
       </TopWrapper>
-      <AnimePagination animes={animes} />
+      <AnimePagination animes={animes} type="anime" />
     </CurrentSeasonWrapper>
   );
 };

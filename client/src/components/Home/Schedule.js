@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import AnimePagination from "./AnimePagination";
+// import AnimePagination from "./AnimePagination";
+import AnimePagination from "../Cards/AnimePagination";
 
 const Schedule = () => {
   const [animes, setAnimes] = useState([]);
@@ -33,7 +34,7 @@ const Schedule = () => {
         <h2>Today's Schedule</h2>
         <p>{day}</p>
       </TopWrapper>
-      <AnimePagination animes={animes} />
+      <AnimePagination animes={animes} type="anime" />
     </ScheduleWrapper>
   );
 };

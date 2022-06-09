@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../GlobalContext";
-
+import Cards from "../Cards";
 const SearchManga = () => {
   const { search } = useContext(GlobalContext);
   const [mangas, setMangas] = useState([]);
@@ -13,7 +13,11 @@ const SearchManga = () => {
         console.log(data);
       });
   }, [search]);
-  return <div>SearchManga</div>;
+  return (
+    <div>
+      <Cards animes={mangas} type="anime" />
+    </div>
+  );
 };
 
 export default SearchManga;

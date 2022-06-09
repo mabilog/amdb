@@ -6,7 +6,7 @@ const index = () => {
   return (
     <Wrapper>
       <SearchAnime />
-      <SearchManga />
+      {/* <SearchManga /> */}
     </Wrapper>
   );
 };

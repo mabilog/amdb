@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../GlobalContext";
 
+import Cards from "../Cards";
+
 const SearchAnime = () => {
   const { search } = useContext(GlobalContext);
   const [animes, setAnimes] = useState([]);
@@ -14,7 +16,11 @@ const SearchAnime = () => {
       });
   }, [search]);
 
-  return <div>SearchAnime</div>;
+  return (
+    <div>
+      <Cards animes={animes} type="anime" />
+    </div>
+  );
 };
 
 export default SearchAnime;

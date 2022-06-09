@@ -5,7 +5,7 @@ import styled from "styled-components";
 import AnimeList from "./AnimeList";
 import Pagination from "./Pagination";
 
-const AnimePagination = ({ animes }) => {
+const AnimePagination = ({ animes, type }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
@@ -16,9 +16,10 @@ const AnimePagination = ({ animes }) => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <AnimePaginationWrapper>
-      <AnimeList animes={currentPost} />
+      <AnimeList animes={currentPost} type={type} />
       <Pagination
         postsPerPage={postsPerPage}
         totalPost={animes.length}

@@ -1,13 +1,28 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 
 import { AnimeContext } from "./AnimeContext";
+import Loading from "./Loading";
 
 const AnimeVA = () => {
-  const { voiceActors } = useContext(AnimeContext);
+  const { anime, voiceActors, setVoiceActors } = useContext(AnimeContext);
+  const [loading, setLoading] = useState(false);
+  const { mal_id } = useParams();
 
   // console.log(voiceActors);
+  useEffect(() => {
+    // fetching VA info
+    setLoading(true);
+    fetch(`/animeApi/getAnime/${mal_id}/characters`)
+      .then((res) => res.json())
+      .then((data) => setVoiceActors(data.queryData.data.slice(0, 6)))
+      .then(() => console.log(voiceActors))
+      .then(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anime]);
+
+  if (loading) return <Loading />;
   return (
     <AnimeVAWrapper>
       <ul>

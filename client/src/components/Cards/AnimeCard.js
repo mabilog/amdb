@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-const AnimeCard = ({ anime }) => {
+const AnimeCard = ({ anime, type }) => {
   return (
     <AnimeCardWrapper>
-      <Link to={`/anime/${anime.mal_id}/`}>
+      <Link to={`/${type}/${anime.mal_id}/`}>
         <Title>{anime.title}</Title>
         <Image src={anime.images.jpg.image_url} alt={anime.title} />
       </Link>

@@ -5,20 +5,17 @@ export const AnimeContext = createContext(null);
 
 const AnimeProvider = ({ children }) => {
   const [anime, setAnime] = useState();
-  const [voiceActors, setVoiceActors] = useState();
-
+  const [loading, setLoading] = useState(false);
   const { mal_id } = useParams();
 
   useEffect(() => {
     // fetching anime info
+    setLoading(true);
     fetch(`/animeApi/getAnime/${mal_id}`)
       .then((res) => res.json())
-      .then((data) => setAnime(data.anime.data));
+      .then((data) => setAnime(data.anime.data))
+      .then(() => setLoading(false));
 
-    // fetching VA info
-    fetch(`/animeApi/getAnime/${mal_id}/characters`)
-      .then((res) => res.json())
-      .then((data) => setVoiceActors(data.queryData.data.slice(0, 6)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -26,7 +23,9 @@ const AnimeProvider = ({ children }) => {
     <AnimeContext.Provider
       value={{
         anime,
-        voiceActors,
+        setAnime,
+        loading,
+        setLoading,
       }}
     >
       {children}

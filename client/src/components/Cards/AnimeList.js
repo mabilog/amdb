@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 import AnimeCard from "./AnimeCard";
-const AnimeList = ({ animes }) => {
+const AnimeList = ({ animes, type }) => {
   return (
     <AnimeListWrapper>
       {animes?.map((anime) => (
-        <AnimeCard anime={anime} key={anime.mal_id} />
+        <AnimeCard anime={anime} key={anime.mal_id} type={type} />
       ))}
     </AnimeListWrapper>
   );
