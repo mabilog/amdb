@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Header from "./Header";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
@@ -30,15 +30,16 @@ const App = () => {
 
 const AppWrapper = styled.div`
   background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
 `;
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  /* align-items: flex-; */
+  align-self: center;
   width: 100%;
-  /* margin: auto; */
   height: 100%;
+  max-width: 1600px;
 `;
 
 export default App;

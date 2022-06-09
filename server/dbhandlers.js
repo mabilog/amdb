@@ -72,8 +72,6 @@ const getUser = async (req, res) => {
 const addFavorite = async (req, res) => {
   const { mal_id, user_id } = req.query;
   try {
-    console.log(mal_id);
-    console.log(user_id);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 
@@ -107,8 +105,6 @@ const addFavorite = async (req, res) => {
 const removeFavorite = async (req, res) => {
   const { mal_id, user_id } = req.query;
   try {
-    console.log(mal_id);
-    console.log(user_id);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 
@@ -116,7 +112,7 @@ const removeFavorite = async (req, res) => {
 
     const user = await db
       .collection("users")
-      .updateOne({ _id: ObjectId(user_id) }, { $push: { favorites: mal_id } });
+      .updateOne({ _id: ObjectId(user_id) }, { $pull: { favorites: mal_id } });
 
     console.log(user);
 
@@ -138,4 +134,4 @@ const removeFavorite = async (req, res) => {
     });
   }
 };
-module.exports = { getUsers, getUser, addFavorite };
+module.exports = { getUsers, getUser, addFavorite, removeFavorite };

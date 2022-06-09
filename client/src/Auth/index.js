@@ -1,11 +1,26 @@
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../GlobalContext";
 
 const Auth = () => {
+  const { setUserInfo } = useContext(GlobalContext);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const navigate = useNavigate();
-  return isAuthenticated ? (
+
+  const handleReload = () => {
+    const user_id = user.sub.split("|")[1];
+    fetch(`/dbApi/getUser/${user_id}`)
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data.user));
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) handleReload();
+  }, [isAuthenticated]);
+
+  return user ? (
     <PPWrapper>
       <img
         src={user.picture}

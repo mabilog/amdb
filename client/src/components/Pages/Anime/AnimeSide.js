@@ -1,21 +1,31 @@
 import { useContext } from "react";
 import { AnimeContext } from "./AnimeContext";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
 import AnimeInformation from "./AnimeInformation";
 import AnimeStatistics from "./AnimeStatistics";
 import AnimeAltTitle from "./AnimeAltTitle";
-const AnimeSide = () => {
-  const { anime } = useContext(AnimeContext);
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { GlobalContext } from "../../../GlobalContext";
+const AnimeSide = () => {
+  const { userInfo } = useContext(GlobalContext);
+  const { anime } = useContext(AnimeContext);
+  const { user } = useAuth0();
+
+  const handleClick = () => {
+    console.log(userInfo);
+  };
   return (
     anime && (
       <AnimeSideWrapper>
         <img src={anime.images.jpg.large_image_url} alt={anime.title} />
         <Status></Status>
-        <div>
-          <button>Add to Favorite</button>
-        </div>
+        {user && (
+          <ButtonWrapper>
+            <button onClick={() => handleClick()}>Add to Favorite</button>
+          </ButtonWrapper>
+        )}
 
         <AnimeAltTitle />
         <AnimeInformation />
@@ -58,4 +68,18 @@ const AnimeSideWrapper = styled.div`
 `;
 const Status = styled.div``;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    background-color: var(--primary);
+    border: none;
+    padding: 20px 40px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+`;
 export default AnimeSide;

@@ -17,7 +17,12 @@ const {
 
 const { getManga, getMangaSearch } = require("./mangaApiHandles");
 
-const { getUsers, getUser, addFavorite } = require("./dbhandlers");
+const {
+  getUsers,
+  getUser,
+  addFavorite,
+  removeFavorite,
+} = require("./dbhandlers");
 
 express()
   .use(morgan("tiny"))
@@ -35,7 +40,9 @@ express()
 
   .get("/dbApi/getUser/:_id", getUser)
   .get("/dbApi/getUsers", getUsers)
+
   .patch("/dbApi/addFavorite/", addFavorite)
+  .patch("/dbApi/removeFavorite/", removeFavorite)
 
   .get("*", (req, res) => {
     res.status(400).json({
