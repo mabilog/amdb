@@ -16,7 +16,7 @@ const AnimeTitle = () => {
         title={anime.title}
         frameBorder="0"
         allowFullScreen
-        encrypted-media
+        encrypted-media="true"
       ></iframe>
       {/* <ReactPlayer
         url={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}

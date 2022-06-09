@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
-import Search from "./Pages/Search";
+import Search from "./Search";
 
 const App = () => {
   return (
@@ -18,10 +18,10 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/anime/:mal_id" element={<Anime />} />
           <Route path="/manga" element={<Manga />} />
-          <Route path="/search/" element={<Search />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Main>
-      <Footer />
+      {/* <Footer /> */}
     </AppWrapper>
   );
 };
@@ -36,6 +36,7 @@ const Main = styled.div`
   /* align-items: flex-; */
   width: 100%;
   /* margin: auto; */
+  height: 100%;
 `;
 
 export default App;

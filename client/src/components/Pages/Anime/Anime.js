@@ -3,17 +3,21 @@ import styled from "styled-components";
 import AnimeDetails from "./AnimeDetails";
 import AnimeSide from "./AnimeSide";
 import { AnimeContext } from "./AnimeContext";
+
+import { useAuth0 } from "@auth0/auth0-react";
 const Anime = () => {
   const { anime } = useContext(AnimeContext);
 
+  const { user } = useAuth0();
+  if (user) console.log(user);
   return (
     <AnimeWrapper>
-      {anime ? (
+      {anime && (
         <Middle>
-          <AnimeSide anime={anime} />
+          <AnimeSide />
           <AnimeDetails />
         </Middle>
-      ) : null}
+      )}
     </AnimeWrapper>
   );
 };

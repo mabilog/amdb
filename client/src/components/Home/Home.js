@@ -5,7 +5,7 @@ import Schedule from "./Schedule";
 const Home = () => {
   return (
     <HomeWrapper>
-      <div>Carousel</div>
+      {/* <div>Carousel</div> */}
       <CurrentSeason />
       <Schedule />
     </HomeWrapper>

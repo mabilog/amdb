@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import Search from "./Search";
 import Logo from "./Logo";
 import User from "./User";
+import Auth from "../../Auth";
 const Header = () => {
   return (
     <HeaderWrapper>
@@ -14,7 +15,7 @@ const Header = () => {
         </Left>
         <Right>
           <Search />
-          <User />
+          <Auth />
         </Right>
       </Container>
     </HeaderWrapper>

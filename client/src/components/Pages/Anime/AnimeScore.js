@@ -5,27 +5,29 @@ import styled from "styled-components";
 const AnimeScore = () => {
   const { anime } = useContext(AnimeContext);
   return (
-    <AnimeScoreWrapper>
-      <ScoreWrapper>
-        <Text>score</Text>
-        <Score>{anime.score}</Score>
-        <span>{anime.scored_by} users</span>
-      </ScoreWrapper>
-      <Center>
-        <div>
-          <span>Ranked: </span>
-          <p>#{anime.rank}</p>
-        </div>
-        <div>
-          <span>Popularity: </span>
-          <p>#{anime.popularity}</p>
-        </div>
-        <div>
-          <span>Members</span>
-          <p> {anime.members}</p>
-        </div>
-      </Center>
-    </AnimeScoreWrapper>
+    anime && (
+      <AnimeScoreWrapper>
+        <ScoreWrapper>
+          <Text>score</Text>
+          <Score>{anime.score}</Score>
+          <span>{anime.scored_by} users</span>
+        </ScoreWrapper>
+        <Center>
+          <div>
+            <span>Ranked: </span>
+            <p>#{anime.rank}</p>
+          </div>
+          <div>
+            <span>Popularity: </span>
+            <p>#{anime.popularity}</p>
+          </div>
+          <div>
+            <span>Members</span>
+            <p> {anime.members}</p>
+          </div>
+        </Center>
+      </AnimeScoreWrapper>
+    )
   );
 };
 

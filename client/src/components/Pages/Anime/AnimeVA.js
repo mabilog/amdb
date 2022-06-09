@@ -7,7 +7,7 @@ import { AnimeContext } from "./AnimeContext";
 const AnimeVA = () => {
   const { voiceActors } = useContext(AnimeContext);
 
-  console.log(voiceActors);
+  // console.log(voiceActors);
   return (
     <AnimeVAWrapper>
       <ul>

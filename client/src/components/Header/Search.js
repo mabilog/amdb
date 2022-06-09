@@ -6,22 +6,19 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext";
 
 const Search = () => {
-  const { search, setSearch, setSearchResult } = useContext(GlobalContext);
-
+  const { setSearch } = useContext(GlobalContext);
+  const [searchBar, setSearchBar] = useState("");
   const navigate = useNavigate();
 
-  const handleOnSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`/animeApi/getSearch/${search}`)
-      .then((res) => res.json())
-      .then((data) => setSearchResult(data.anime.data))
-      .then(() => navigate("/search"));
+    setSearch(searchBar);
+    navigate(`/search`);
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
-    <SearchWrapper onSubmit={(e) => handleOnSubmit(e)}>
-      <Input onChange={(e) => setSearch(e.target.value)} />
+    <SearchWrapper onSubmit={(e) => handleSubmit(e)}>
+      <Input onChange={(e) => setSearchBar(e.target.value)} />
       <SearchButton type="submit">
         <FaSearch />
       </SearchButton>
