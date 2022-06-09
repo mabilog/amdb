@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import AnimeScore from "./AnimeScore";
+import AnimeSynopsis from "./AnimeSynopsis";
 import AnimeTitle from "./AnimeTitle";
 // import AnimeVA from "./AnimeVA";
 
@@ -8,6 +9,7 @@ const AnimeDetails = () => {
     <AnimeDetailsWrapper>
       <AnimeTitle />
       <AnimeScore />
+      <AnimeSynopsis />
       {/* <AnimeVA /> */}
     </AnimeDetailsWrapper>
   );

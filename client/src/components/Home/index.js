@@ -1,12 +1,12 @@
 import Home from "./Home";
-import HomeProvider from "./HomeContext";
+// import HomeProvider from "./HomeContext";
 
-const index = () => {
-  return (
-    <HomeProvider>
-      <Home />
-    </HomeProvider>
-  );
-};
+// const index = () => {
+//   return (
+//     // <HomeProvider>
+//     <Home />
+//     // {/* </HomeProvider> */}
+//   );
+// };
 
-export default index;
+export default Home;

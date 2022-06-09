@@ -7,6 +7,7 @@ import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
 import Search from "./Search";
+import Profile from "./Pages/Profile";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/anime/:mal_id" element={<Anime />} />
           <Route path="/manga" element={<Manga />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Main>
       {/* <Footer /> */}
