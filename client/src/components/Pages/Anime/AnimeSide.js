@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AnimeContext } from "./AnimeContext";
 import styled from "styled-components";
 
@@ -9,9 +9,8 @@ import AnimeAltTitle from "./AnimeAltTitle";
 import { GlobalContext } from "../../../GlobalContext";
 
 const AnimeSide = () => {
-  const { userInfo, setUserInfo } = useContext(GlobalContext);
+  const { userInfo, setUserInfo, arrId } = useContext(GlobalContext);
   const { anime } = useContext(AnimeContext);
-  const [arrId, setArrId] = useState([]);
 
   const handleToggle = (e) => {
     e.preventDefault();
@@ -29,25 +28,28 @@ const AnimeSide = () => {
       .then((res) => res.json())
       .then((data) => {
         setUserInfo(data.user);
-        setArrId(data.user.favorites.map((show) => show.mal_id));
       });
+  };
+
+  const ButtonThing = () => {
+    return arrId.includes(anime.mal_id) ? (
+      <Button onClick={handleToggle} includes={true}>
+        Remove from favorites
+      </Button>
+    ) : (
+      <Button onClick={handleToggle} includes={false}>
+        Add to favorites
+      </Button>
+    );
   };
 
   return (
     anime && (
       <AnimeSideWrapper>
         <img src={anime.images.jpg.large_image_url} alt={anime.title} />
-        <Status></Status>
+
         <ButtonWrapper>
-          {/* {console.log(arrId)} */}
-          {userInfo && arrId ? (
-            <Button
-              onClick={handleToggle}
-              includes={arrId.includes(anime.mal_id)}
-            >
-              toggle me baby
-            </Button>
-          ) : null}
+          {userInfo && arrId ? <ButtonThing /> : null}
         </ButtonWrapper>
 
         <AnimeAltTitle />
@@ -86,7 +88,6 @@ const AnimeSideWrapper = styled.div`
     border-bottom: 1px solid var(--gray);
   }
 `;
-const Status = styled.div``;
 
 const ButtonWrapper = styled.div`
   display: flex;

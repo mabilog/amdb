@@ -1,10 +1,17 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext(null);
 
 const GlobalProvider = ({ children }) => {
   const [search, setSearch] = useState();
   const [userInfo, setUserInfo] = useState();
+  const [arrId, setArrId] = useState([]);
+
+  useEffect(() => {
+    if (userInfo) {
+      setArrId(userInfo.favorites.map((anime) => anime.mal_id));
+    }
+  }, [userInfo]);
 
   return (
     <GlobalContext.Provider
@@ -13,6 +20,8 @@ const GlobalProvider = ({ children }) => {
         setSearch,
         userInfo,
         setUserInfo,
+        arrId,
+        setArrId,
       }}
     >
       {children}

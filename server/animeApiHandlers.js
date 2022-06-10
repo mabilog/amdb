@@ -1,4 +1,3 @@
-const jikanjs = require("@mateoaranda/jikanjs");
 const fetch = require("node-fetch");
 
 const getAnime = async (req, res) => {

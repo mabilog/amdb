@@ -6,7 +6,7 @@ import Cards from "../../Cards";
 import { useContext } from "react";
 import { GlobalContext } from "../../../GlobalContext";
 const Profile = () => {
-  const { userInfo, setUserInfo } = useContext(GlobalContext);
+  const { setUserInfo } = useContext(GlobalContext);
   const { user } = useAuth0();
   const [favAnime, setFavAnime] = useState();
 
