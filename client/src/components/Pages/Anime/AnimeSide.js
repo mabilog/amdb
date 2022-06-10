@@ -30,6 +30,7 @@ const AnimeSide = () => {
       .then((data) => {
         setUserInfo(data.user);
         console.log(data.user);
+
         // setUserInfo(data.user);
       })
       .then(() => setArrId(userInfo.favorites.map((show) => show.mal_id)));
