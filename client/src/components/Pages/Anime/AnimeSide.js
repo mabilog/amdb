@@ -7,7 +7,7 @@ import AnimeStatistics from "./AnimeStatistics";
 import AnimeAltTitle from "./AnimeAltTitle";
 
 import { GlobalContext } from "../../../GlobalContext";
-import { useEffect } from "react";
+
 const AnimeSide = () => {
   const { userInfo, setUserInfo } = useContext(GlobalContext);
   const { anime } = useContext(AnimeContext);
@@ -29,19 +29,10 @@ const AnimeSide = () => {
       .then((res) => res.json())
       .then((data) => {
         setUserInfo(data.user);
-        console.log(data.user);
-
-        // setUserInfo(data.user);
-      })
-      .then(() => setArrId(userInfo.favorites.map((show) => show.mal_id)));
+        setArrId(data.user.favorites.map((show) => show.mal_id));
+      });
   };
 
-  useEffect(() => {
-    console.log(arrId);
-  }, [arrId, userInfo]);
-
-  const favArr = userInfo.favorites.map((show) => show.mal_id);
-  // setArrId(favArr);
   return (
     anime && (
       <AnimeSideWrapper>
@@ -50,23 +41,18 @@ const AnimeSide = () => {
         <ButtonWrapper>
           {/* {console.log(arrId)} */}
           {userInfo && arrId ? (
-            <button
+            <Button
               onClick={handleToggle}
-              active={arrId.includes(anime.mal_id)}
-              // active={}
-              // active={true}
+              includes={arrId.includes(anime.mal_id)}
             >
               toggle me baby
-            </button>
+            </Button>
           ) : null}
         </ButtonWrapper>
 
         <AnimeAltTitle />
         <AnimeInformation />
         <AnimeStatistics />
-        <div>
-          <span></span>
-        </div>
       </AnimeSideWrapper>
     )
   );
@@ -106,17 +92,16 @@ const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  button {
-    background-color: var(--primary);
-    border: none;
-    padding: 20px 40px;
-    border-radius: 40px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    &:active {
-      background-color: green;
-    }
-  }
+`;
+
+const Button = styled.button`
+  background-color: var(--primary);
+  border: none;
+  padding: 20px 40px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: ${(props) => (props.includes ? 0.5 : 1)};
 `;
 export default AnimeSide;
