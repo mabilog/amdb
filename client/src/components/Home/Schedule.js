@@ -27,6 +27,7 @@ const Schedule = () => {
     fetchAnime();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(animes);
 
   return (
     <ScheduleWrapper>

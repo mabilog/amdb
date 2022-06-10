@@ -13,6 +13,7 @@ const {
   getSchedule,
   getCurrentSeason,
   getAnimeSearch,
+  getFavorites,
 } = require("./animeApiHandlers");
 
 const { getManga, getMangaSearch } = require("./mangaApiHandles");
@@ -34,6 +35,7 @@ express()
   .get("/animeApi/getSchedule/:day", getSchedule)
   .get("/animeApi/getCurrentSeason", getCurrentSeason)
   .get("/animeApi/getAnimeSearch/:q", getAnimeSearch)
+  .post("/animeApi/getFavorites", getFavorites)
 
   .get("/mangaApi/getManga/:mal_id", getManga)
   .get("/mangaApi/getMangaSearch/:q", getMangaSearch)
@@ -43,7 +45,6 @@ express()
 
   .patch("/dbApi/addFavorite/", addFavorite)
   .patch("/dbApi/removeFavorite/", removeFavorite)
-
   .get("*", (req, res) => {
     res.status(400).json({
       status: 400,

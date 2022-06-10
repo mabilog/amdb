@@ -1,6 +1,6 @@
 "use strict";
 
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient, ObjectId, MongoTailableCursorError } = require("mongodb");
 require("dotenv").config();
 
 const { MONGO_URI, DATABASE_NAME } = process.env;
@@ -70,8 +70,9 @@ const getUser = async (req, res) => {
 };
 
 const addFavorite = async (req, res) => {
-  const { mal_id, user_id } = req.query;
+  const { mal_id, user_id } = req.body;
   try {
+    console.log(req.body);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 
@@ -134,4 +135,9 @@ const removeFavorite = async (req, res) => {
     });
   }
 };
-module.exports = { getUsers, getUser, addFavorite, removeFavorite };
+module.exports = {
+  getUsers,
+  getUser,
+  addFavorite,
+  removeFavorite,
+};

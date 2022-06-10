@@ -8,6 +8,7 @@ import { GlobalContext } from "../../../GlobalContext";
 const Profile = () => {
   const { userInfo, setUserInfo } = useContext(GlobalContext);
   const { isAuthenticated, user } = useAuth0();
+  const [favAnime, setFavAnime] = useState();
 
   const _id = user.sub.split("|")[1];
 
@@ -18,8 +19,20 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(userInfo);
+  useEffect(() => {
+    fetch("/animeApi/getFavorites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo.favorites),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFavAnime(data.animeList);
+      });
+  }, [userInfo]);
 
+  console.log(favAnime);
   return user ? (
     <ProfileWrapper>
       <TopWrapper>
@@ -33,7 +46,7 @@ const Profile = () => {
       </TopWrapper>
       <FavoritesWrapper>
         <h2>Favorites</h2>
-        {userInfo && <Cards animes={userInfo.favorites} type="anime" />}
+        {favAnime && <Cards animes={favAnime} type="anime" />}
       </FavoritesWrapper>
     </ProfileWrapper>
   ) : (

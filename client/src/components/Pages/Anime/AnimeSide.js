@@ -14,8 +14,22 @@ const AnimeSide = () => {
   const { user } = useAuth0();
 
   const handleClick = () => {
-    console.log(userInfo);
+    console.log();
+    const body = {
+      user_id: userInfo._id,
+      mal_id: anime.mal_id,
+    };
+    fetch(`/dbApi/addFavorite`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
+
   return (
     anime && (
       <AnimeSideWrapper>
