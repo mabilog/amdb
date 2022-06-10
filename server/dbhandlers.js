@@ -69,75 +69,73 @@ const getUser = async (req, res) => {
   }
 };
 
-const addFavorite = async (req, res) => {
-  const { mal_id, user_id } = req.body;
+const toggleFavorite = async (req, res) => {
+  const { user_id, anime } = req.body;
   try {
-    console.log(req.body);
+    console.log(anime.mal_id);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 
     const db = client.db(DATABASE_NAME);
 
-    const user = await db
+    const result = await db
       .collection("users")
-      .updateOne({ _id: ObjectId(user_id) }, { $push: { favorites: mal_id } });
+      .findOne({ _id: ObjectId(user_id), "favorites.mal_id": anime.mal_id });
 
-    console.log(user);
+    console.log(result);
 
-    user
-      ? res.status(200).json({
-          status: 200,
-          user,
-          message: "Successfully requested user info",
-        })
-      : res.status(500).json({
-          status: 500,
-          message: "Something went wrong while requesting a user",
-        });
+    if (!result) {
+      const response = await db
+        .collection("users")
+        .updateOne({ _id: ObjectId(user_id) }, { $push: { favorites: anime } });
+
+      const user = await db
+        .collection("users")
+        .findOne({ _id: ObjectId(user_id) });
+
+      client.close();
+
+      res.status(200).json({
+        status: 200,
+        user,
+        response,
+        message: "Successfully pushed anime into favorites array",
+      });
+    } else {
+      const response = await db
+        .collection("users")
+        .updateOne({ _id: ObjectId(user_id) }, { $pull: { favorites: anime } });
+
+      const user = await db
+        .collection("users")
+        .findOne({ _id: ObjectId(user_id) });
+
+      client.close();
+
+      res.status(200).json({
+        status: 200,
+        user,
+        response,
+        message: "Successfully pulled anime into favorites array",
+      });
+    }
+    // client.close();
+    // res.status(200).json({
+    //   status: 200,
+    //   result,
+    //   message: "Something went happened while toggling a favorite",
+    // });
   } catch (err) {
     console.error(err);
     res.status(500).json({
       status: 500,
-      message: "Something went wrong while requesting a user",
+      message: "Something went wrong while toggling a favorite",
     });
   }
 };
 
-const removeFavorite = async (req, res) => {
-  const { mal_id, user_id } = req.query;
-  try {
-    const client = new MongoClient(MONGO_URI, options);
-    await client.connect();
-
-    const db = client.db(DATABASE_NAME);
-
-    const user = await db
-      .collection("users")
-      .updateOne({ _id: ObjectId(user_id) }, { $pull: { favorites: mal_id } });
-
-    console.log(user);
-
-    user
-      ? res.status(200).json({
-          status: 200,
-          user,
-          message: "Successfully requested user info",
-        })
-      : res.status(500).json({
-          status: 500,
-          message: "Something went wrong while requesting a user",
-        });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      status: 500,
-      message: "Something went wrong while requesting a user",
-    });
-  }
-};
 module.exports = {
   getUsers,
   getUser,
-  addFavorite,
-  removeFavorite,
+  toggleFavorite,
 };

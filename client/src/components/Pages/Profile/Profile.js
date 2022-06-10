@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../../GlobalContext";
 const Profile = () => {
   const { userInfo, setUserInfo } = useContext(GlobalContext);
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const [favAnime, setFavAnime] = useState();
 
   const _id = user.sub.split("|")[1];
@@ -15,24 +15,13 @@ const Profile = () => {
   useEffect(() => {
     fetch(`/dbApi/getUser/${_id}`)
       .then((res) => res.json())
-      .then((data) => setUserInfo(data.user));
+      .then((data) => {
+        setUserInfo(data.user);
+        setFavAnime(data.user.favorites);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    fetch("/animeApi/getFavorites", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInfo.favorites),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setFavAnime(data.animeList);
-      });
-  }, [userInfo]);
-
-  console.log(favAnime);
   return user ? (
     <ProfileWrapper>
       <TopWrapper>
@@ -46,7 +35,11 @@ const Profile = () => {
       </TopWrapper>
       <FavoritesWrapper>
         <h2>Favorites</h2>
-        {favAnime && <Cards animes={favAnime} type="anime" />}
+        {favAnime ? (
+          <Cards animes={favAnime} type="anime" />
+        ) : (
+          <div>Loading</div>
+        )}
       </FavoritesWrapper>
     </ProfileWrapper>
   ) : (

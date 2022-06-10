@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@mateoaranda/jikanjs@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@mateoaranda/jikanjs/-/jikanjs-1.2.4.tgz#31fadfe6ecf9bc1169412da7cb33de96e42d775e"
+  integrity sha512-iZ1JvpmuXa9Rwhg8Cnws1hLtDKLj6uTP/NhWhbF8P5pGFwMWjYkcLCL3tTzQAcR5ozj3XfBCKglTb3B3Bq6ULw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const jikanjs = require("@mateoaranda/jikanjs");
 const fetch = require("node-fetch");
 
 const getAnime = async (req, res) => {
@@ -128,45 +128,10 @@ const getAnimeSearch = async (req, res) => {
     });
   }
 };
-const getFavorites = async (req, res) => {
-  try {
-    const favorites = req.body;
-
-    const animeList = await Promise.all(
-      favorites.map(async (favorite) => {
-        const animeRes = await fetch(
-          `https://api.jikan.moe/v4/anime/${favorite}`
-        );
-        const anime = await animeRes.json();
-
-        return anime.data;
-      })
-    );
-
-    animeList
-      ? res.status(200).json({
-          status: 200,
-          animeList,
-          message: "Successfully requested favorite anime details",
-        })
-      : res.status(500).json({
-          status: 500,
-          message:
-            "Something went wrong while requesting favorite anime details",
-        });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      status: 500,
-      message: "Something went wrong while requesting favorite anime details",
-    });
-  }
-};
 module.exports = {
   getAnime,
   getAnimeQuery,
   getSchedule,
   getCurrentSeason,
   getAnimeSearch,
-  getFavorites,
 };

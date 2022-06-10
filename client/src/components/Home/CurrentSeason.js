@@ -23,7 +23,7 @@ const CurrentSeason = () => {
       <TopWrapper>
         <h2>Seasonal Animes</h2>
       </TopWrapper>
-      <AnimePagination animes={animes} type="anime" />
+      {animes && <AnimePagination animes={animes} type="anime" />}
     </CurrentSeasonWrapper>
   );
 };
