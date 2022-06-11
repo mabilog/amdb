@@ -10,7 +10,7 @@ const Header = () => {
     <HeaderWrapper>
       <Container>
         <Left>
-          <Menu />
+          {/* <Menu /> */}
           <Logo />
         </Left>
         <Right>

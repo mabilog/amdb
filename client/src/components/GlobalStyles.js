@@ -66,6 +66,8 @@ export default createGlobalStyle`
   }
   body {
       line-height: 1;
+      background-color: var(--secondary);
+      color: var(--light);
   }
   ol, ul {
       list-style: none;
