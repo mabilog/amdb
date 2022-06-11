@@ -5,7 +5,6 @@ import AnimeSide from "./AnimeSide";
 import { AnimeContext } from "./AnimeContext";
 import Loading from "./Loading";
 
-// import { useAuth0 } from "@auth0/auth0-react";
 const Anime = () => {
   const { anime, loading } = useContext(AnimeContext);
 
