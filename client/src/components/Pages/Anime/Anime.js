@@ -4,6 +4,7 @@ import AnimeDetails from "./AnimeDetails";
 import AnimeSide from "./AnimeSide";
 import { AnimeContext } from "./AnimeContext";
 import Loading from "./Loading";
+import BackBtn from "../../BackButton";
 
 const Anime = () => {
   const { anime, loading } = useContext(AnimeContext);
@@ -11,6 +12,7 @@ const Anime = () => {
   if (loading) return <Loading />;
   return (
     <AnimeWrapper>
+      <BackBtn />
       {anime && (
         <Middle>
           <AnimeSide />

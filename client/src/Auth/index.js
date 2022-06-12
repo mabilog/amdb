@@ -21,6 +21,10 @@ const Auth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    if (user) console.log(user);
+  }, [user]);
+
   return user ? (
     <PPWrapper>
       <img
