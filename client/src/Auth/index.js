@@ -18,6 +18,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (isAuthenticated) handleReload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   return user ? (
