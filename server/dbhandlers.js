@@ -1,6 +1,6 @@
 "use strict";
 
-const { MongoClient, ObjectId, MongoTailableCursorError } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 require("dotenv").config();
 
 const { MONGO_URI, DATABASE_NAME } = process.env;
@@ -45,10 +45,7 @@ const getUser = async (req, res) => {
     await client.connect();
 
     const db = client.db(DATABASE_NAME);
-
     const user = await db.collection("users").findOne({ _id: ObjectId(_id) });
-
-    // console.log(user);
 
     user
       ? res.status(200).json({
@@ -71,8 +68,8 @@ const getUser = async (req, res) => {
 
 const toggleFavorite = async (req, res) => {
   const { user_id, anime } = req.body;
+
   try {
-    console.log(anime.mal_id);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 

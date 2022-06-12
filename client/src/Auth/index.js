@@ -33,6 +33,16 @@ const Auth = () => {
     <AuthWrapper onClick={() => loginWithRedirect()}>LogIn</AuthWrapper>
   );
 };
+const PPWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+`;
 
 const AuthWrapper = styled.button`
   all: unset;
@@ -45,13 +55,4 @@ const AuthWrapper = styled.button`
   cursor: pointer;
 `;
 
-const PPWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 40px;
-    border-radius: 50%;
-  }
-`;
 export default Auth;

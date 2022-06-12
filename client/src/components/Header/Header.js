@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Search from "./Search";
 import Logo from "./Logo";
 import Auth from "../../Auth";
+
 const Header = () => {
   return (
     <HeaderWrapper>

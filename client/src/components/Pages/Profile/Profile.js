@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import Cards from "../../Cards";
+import Titles from "../../Titles";
+import Loading from "../Anime/Loading";
 import { useContext } from "react";
 import { GlobalContext } from "../../../GlobalContext";
+
 const Profile = () => {
   const { setUserInfo } = useContext(GlobalContext);
   const { user } = useAuth0();
@@ -34,12 +36,16 @@ const Profile = () => {
         </Right>
       </TopWrapper>
       <FavoritesWrapper>
-        <h2>Favorites</h2>
-        {favAnime ? (
-          <Cards animes={favAnime} type="anime" />
-        ) : (
-          <div>Loading</div>
-        )}
+        <Title>
+          <h2>Favorites</h2>
+        </Title>
+        <Animes>
+          {favAnime ? (
+            favAnime.map((anime) => <Titles anime={anime} key={anime.mal_id} />)
+          ) : (
+            <Loading />
+          )}
+        </Animes>
       </FavoritesWrapper>
     </ProfileWrapper>
   ) : (
@@ -48,13 +54,14 @@ const Profile = () => {
 };
 
 const ProfileWrapper = styled.div`
+  width: 100%;
   height: 100%;
 `;
 const TopWrapper = styled.div`
   display: flex;
   margin: 0 auto;
-  width: 70%;
-  max-width: 1000px;
+  min-width: 70%;
+  min-height: 100%;
   align-items: center;
   justify-content: space-around;
   img {
@@ -69,5 +76,21 @@ const Right = styled.div``;
 const FavoritesWrapper = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  p:first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+const Animes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
 `;
 export default Profile;

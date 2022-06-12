@@ -5,8 +5,6 @@ const PORT = 8000;
 const express = require("express");
 const morgan = require("morgan");
 
-// const { getRecommendation, getManga } = require("./apiHandlers");
-
 const {
   getAnime,
   getAnimeQuery,
@@ -14,8 +12,6 @@ const {
   getCurrentSeason,
   getAnimeSearch,
 } = require("./animeApiHandlers");
-
-const { getManga, getMangaSearch } = require("./mangaApiHandles");
 
 const { getUsers, getUser, toggleFavorite } = require("./dbhandlers");
 
@@ -25,13 +21,9 @@ express()
 
   .get("/animeApi/getAnime/:mal_id", getAnime)
   .get("/animeApi/getAnime/:mal_id/:query", getAnimeQuery)
-
   .get("/animeApi/getSchedule/:day", getSchedule)
   .get("/animeApi/getCurrentSeason", getCurrentSeason)
   .get("/animeApi/getAnimeSearch/:q", getAnimeSearch)
-
-  .get("/mangaApi/getManga/:mal_id", getManga)
-  .get("/mangaApi/getMangaSearch/:q", getMangaSearch)
 
   .get("/dbApi/getUser/:_id", getUser)
   .get("/dbApi/getUsers", getUsers)

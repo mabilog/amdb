@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "./Home";
 import Header from "./Header";
-import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
@@ -10,7 +8,7 @@ import Search from "./Search";
 import Profile from "./Pages/Profile";
 import FourOhFour from "./Pages/404";
 import { useAuth0 } from "@auth0/auth0-react";
-import Root from "./Root";
+import Root from "./Home";
 import Schedule from "./Pages/Schedule";
 import Seasonal from "./Pages/Seasonal";
 
@@ -35,7 +33,6 @@ const App = () => {
           <Route path="*" element={<FourOhFour />} />
         </Routes>
       </Main>
-      {/* <Footer /> */}
     </AppWrapper>
   );
 };
@@ -56,8 +53,6 @@ const Main = styled.div`
   flex-direction: column;
   align-self: center;
   justify-content: center;
-  /* width: 100%;
-  height: 80vh; */
   max-width: 1600px;
 `;
 
