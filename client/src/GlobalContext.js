@@ -4,6 +4,7 @@ export const GlobalContext = createContext(null);
 
 const GlobalProvider = ({ children }) => {
   const [search, setSearch] = useState();
+  const [searchInput, setSearchInput] = useState("");
   const [userInfo, setUserInfo] = useState();
   const [arrId, setArrId] = useState([]);
 
@@ -22,6 +23,8 @@ const GlobalProvider = ({ children }) => {
         setUserInfo,
         arrId,
         setArrId,
+        searchInput,
+        setSearchInput,
       }}
     >
       {children}

@@ -56,7 +56,9 @@ const getAnimeQuery = async (req, res) => {
 const getSchedule = async (req, res) => {
   try {
     const { day } = req.params;
-    const response = await fetch(`https://api.jikan.moe/v4/schedules/${day}`);
+    const response = await fetch(
+      `https://api.jikan.moe/v4/schedules/${day}?limit=100`
+    );
     const animes = await response.json();
 
     animes

@@ -20,11 +20,15 @@ const Header = () => {
 };
 
 const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 75px;
+  height: 7vh;
+  background-color: var(--secondary);
+  z-index: 2;
 `;
 
 const Container = styled.div`
@@ -32,7 +36,7 @@ const Container = styled.div`
   align-items: center;
   min-width: 80%;
   max-width: 1800px;
-  height: ;
+  /* height: ; */
 `;
 
 const Left = styled.div`

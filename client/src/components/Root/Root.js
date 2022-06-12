@@ -5,8 +5,11 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../GlobalContext";
 
-const Search = () => {
+import Logo from "../Header/Logo";
+import Categories from "./Categories";
+const Root = () => {
   const { setSearch, searchInput, setSearchInput } = useContext(GlobalContext);
+  // const [searchBar, setSearchBar] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -16,23 +19,46 @@ const Search = () => {
   };
 
   return (
-    <SearchWrapper onSubmit={(e) => handleSubmit(e)}>
-      <Input onChange={(e) => setSearchInput(e.target.value)} />
-      <SearchButton type="submit">
-        <FaSearch />
-      </SearchButton>
-    </SearchWrapper>
+    <RootWrapper>
+      <Logo />
+      <SearchWrapper onSubmit={(e) => handleSubmit(e)}>
+        <Input onChange={(e) => setSearchInput(e.target.value)} />
+        <SearchButton type="submit">
+          <FaSearch />
+        </SearchButton>
+      </SearchWrapper>
+      <p>Anime Database</p>
+      <Categories />
+    </RootWrapper>
   );
 };
+
+const RootWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+  gap: 30px;
+  span {
+    width: 100px;
+  }
+  h1 {
+    font-size: 100px;
+    width: 100%;
+  }
+`;
+
 const SearchWrapper = styled.form`
   display: flex;
   justify-content: center;
   background-color: var(--gray-dark);
   border-radius: 20px;
-  height: 75%;
+  width: 500px;
 `;
 const Input = styled.input`
-  width: 75%;
+  width: 100%;
   font-size: 16px;
   border: none;
   background-image: none;
@@ -61,4 +87,4 @@ const SearchButton = styled.button`
     color: var(--purple);
   }
 `;
-export default Search;
+export default Root;

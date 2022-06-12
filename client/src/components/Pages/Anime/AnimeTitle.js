@@ -37,4 +37,5 @@ const AnimeTitleWrapper = styled.div`
     margin: 30px auto;
   }
 `;
+
 export default AnimeTitle;
