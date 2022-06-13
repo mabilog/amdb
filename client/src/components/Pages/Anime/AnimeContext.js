@@ -19,8 +19,6 @@ const AnimeProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // console.log(anime);
-
   return (
     <AnimeContext.Provider
       value={{

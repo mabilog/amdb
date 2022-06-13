@@ -10,14 +10,12 @@ const AnimeVA = () => {
   const [loading, setLoading] = useState(false);
   const { mal_id } = useParams();
 
-  // console.log(voiceActors);
   useEffect(() => {
     // fetching VA info
     setLoading(true);
     fetch(`/animeApi/getAnime/${mal_id}/characters`)
       .then((res) => res.json())
       .then((data) => setVoiceActors(data.queryData.data.slice(0, 6)))
-      .then(() => console.log(voiceActors))
       .then(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anime]);

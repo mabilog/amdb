@@ -40,7 +40,6 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   const { _id } = req.params;
   try {
-    console.log(_id);
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
 
@@ -78,8 +77,6 @@ const toggleFavorite = async (req, res) => {
     const result = await db
       .collection("users")
       .findOne({ _id: ObjectId(user_id), "favorites.mal_id": anime.mal_id });
-
-    console.log(result);
 
     if (!result) {
       const response = await db

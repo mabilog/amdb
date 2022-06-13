@@ -106,8 +106,6 @@ const getCurrentSeason = async (req, res) => {
 };
 const getAnimeSearch = async (req, res) => {
   const { q } = req.params;
-  // console.log();
-  // console.log(req.query);
   try {
     const animesRes = await fetch(`https://api.jikan.moe/v4/anime?q=${q}`);
     const animes = await animesRes.json();

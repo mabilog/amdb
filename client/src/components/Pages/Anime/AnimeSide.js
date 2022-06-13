@@ -13,8 +13,6 @@ const AnimeSide = () => {
   const { userInfo, setUserInfo, arrId } = useContext(GlobalContext);
   const { user } = useAuth0();
   const { anime } = useContext(AnimeContext);
-  // console.log(user);
-  console.log(userInfo);
 
   const handleToggle = (e) => {
     e.preventDefault();

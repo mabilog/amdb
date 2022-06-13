@@ -10,10 +10,7 @@ const SearchAnime = () => {
   useEffect(() => {
     fetch(`/animeApi/getAnimeSearch/${search}`)
       .then((res) => res.json())
-      .then((data) => {
-        setAnimes(data.animes.data);
-        console.log(data);
-      });
+      .then((data) => setAnimes(data.animes.data));
   }, [search]);
 
   return (

@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 const Auth = () => {
-  const { setUserInfo, userInfo } = useContext(GlobalContext);
+  const { setUserInfo } = useContext(GlobalContext);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const navigate = useNavigate();
 
@@ -21,16 +21,6 @@ const Auth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
-  // console.log(isAuthenticated);
-  useEffect(() => {
-    if (user) console.log(user);
-  }, [user]);
-
-  // useEffect(() => {
-  //   handleReload();
-  // }, []);
-
-  // console.log(userInfo);
   return user ? (
     <PPWrapper>
       <img

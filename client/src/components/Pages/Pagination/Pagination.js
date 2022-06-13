@@ -1,7 +1,7 @@
 import React from "react";
 
 const Pagination = ({ pagination }) => {
-  console.log(pagination);
+  pagination;
   return <div>Pagination</div>;
 };
 
