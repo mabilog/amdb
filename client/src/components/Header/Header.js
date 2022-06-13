@@ -27,7 +27,7 @@ const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 7vh;
+  height: 10vh;
   background-color: var(--secondary);
   z-index: 2;
 `;
@@ -37,7 +37,7 @@ const Container = styled.div`
   align-items: center;
   min-width: 80%;
   max-width: 1800px;
-  /* height: ; */
+  height: 100%;
 `;
 
 const Left = styled.div`

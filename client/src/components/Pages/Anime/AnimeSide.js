@@ -7,10 +7,14 @@ import AnimeStatistics from "./AnimeStatistics";
 import AnimeAltTitle from "./AnimeAltTitle";
 
 import { GlobalContext } from "../../../GlobalContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const AnimeSide = () => {
   const { userInfo, setUserInfo, arrId } = useContext(GlobalContext);
+  const { user } = useAuth0();
   const { anime } = useContext(AnimeContext);
+  // console.log(user);
+  console.log(userInfo);
 
   const handleToggle = (e) => {
     e.preventDefault();
@@ -48,9 +52,7 @@ const AnimeSide = () => {
       <AnimeSideWrapper>
         <img src={anime.images.jpg.large_image_url} alt={anime.title} />
 
-        <ButtonWrapper>
-          {userInfo && arrId ? <ButtonThing /> : null}
-        </ButtonWrapper>
+        <ButtonWrapper>{user ? <ButtonThing /> : null}</ButtonWrapper>
 
         <AnimeAltTitle />
         <AnimeInformation />

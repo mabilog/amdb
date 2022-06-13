@@ -54,8 +54,12 @@ const Profile = () => {
 };
 
 const ProfileWrapper = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
   height: 100%;
+  min-height: 80vh;
+  gap: 20px;
 `;
 const TopWrapper = styled.div`
   display: flex;
@@ -69,7 +73,11 @@ const TopWrapper = styled.div`
   }
 `;
 
-const Left = styled.div``;
+const Left = styled.div`
+  img {
+    width: 50px;
+  }
+`;
 
 const Right = styled.div``;
 
