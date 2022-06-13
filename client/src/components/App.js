@@ -4,7 +4,7 @@ import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import Anime from "./Pages/Anime";
 import Manga from "./Pages/Manga";
-import Search from "./Search";
+import SearchAnime from "./Pages/Search/SearchAnime";
 import Profile from "./Pages/Profile";
 import FourOhFour from "./Pages/404";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -23,7 +23,7 @@ const App = () => {
           <Route exact path="/" element={<Root />} />
           <Route path="/anime/:mal_id" element={<Anime />} />
           <Route path="/manga" element={<Manga />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search" element={<SearchAnime />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/seasonal" element={<Seasonal />} />
           <Route
