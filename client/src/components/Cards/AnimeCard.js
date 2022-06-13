@@ -14,8 +14,6 @@ const AnimeCard = ({ anime, type }) => {
 const AnimeCardWrapper = styled.div`
   position: relative;
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
   width: 150px;
 `;
 

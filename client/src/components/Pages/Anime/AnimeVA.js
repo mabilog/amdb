@@ -100,7 +100,6 @@ const CharWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: left; */
 `;
 
 export default AnimeVA;

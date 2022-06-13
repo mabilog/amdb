@@ -27,8 +27,6 @@ const Categories = () => {
 
 const CategoriesWrapper = styled.div`
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   gap: 60px;
 
   p:first-letter {

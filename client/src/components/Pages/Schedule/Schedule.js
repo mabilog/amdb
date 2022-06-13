@@ -40,7 +40,6 @@ const Schedule = () => {
           <Loading />
         )}
       </Animes>
-      {/* <Pagination pagination={pagination} /> */}
     </ScheduleWrapper>
   );
 };
@@ -67,8 +66,5 @@ const Animes = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
-  /* gap: 20px;
-  height: 300px;
-  width: 200px; */
 `;
 export default Schedule;
