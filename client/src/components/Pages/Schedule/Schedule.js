@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Loading from "../Anime/Loading";
 import Titles from "../../Titles";
-// import Pagination from "../Pagination";
-
 const Schedule = () => {
   const [animes, setAnimes] = useState([]);
-  // const [pagination, setPagination] = useState();
   const weekday = [
     "sunday",
     "monday",
@@ -24,7 +21,6 @@ const Schedule = () => {
         .then((res) => res.json())
         .then((data) => {
           setAnimes(data.data.data);
-          // setPagination(data.data.pagination);
         });
     };
     fetchAnime();

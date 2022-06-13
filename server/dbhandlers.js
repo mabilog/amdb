@@ -113,12 +113,6 @@ const toggleFavorite = async (req, res) => {
         message: "Successfully pulled anime into favorites array",
       });
     }
-    // client.close();
-    // res.status(200).json({
-    //   status: 200,
-    //   result,
-    //   message: "Something went happened while toggling a favorite",
-    // });
   } catch (err) {
     console.error(err);
     res.status(500).json({

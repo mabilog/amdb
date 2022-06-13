@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { AnimeContext } from "./AnimeContext";
 import styled from "styled-components";
-// import ReactPlayer from "react-player";
-// import { ResponsiveEmbed } from "react-responsive-embed";
 const AnimeTitle = () => {
   const { anime } = useContext(AnimeContext);
 
@@ -11,9 +9,6 @@ const AnimeTitle = () => {
       <h1>{anime.title}</h1>
       <h2>{anime.title_english}</h2>
 
-      {/* <ResponsiveEmbed
-        src={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}
-      ></ResponsiveEmbed> */}
       <iframe
         src={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}
         width="560"
@@ -23,9 +18,6 @@ const AnimeTitle = () => {
         allowFullScreen
         encrypted-media="true"
       ></iframe>
-      {/* <ReactPlayer
-        url={`https://www.youtube.com/embed/${anime.trailer.youtube_id}`}
-      /> */}
     </AnimeTitleWrapper>
   );
 };
