@@ -38,11 +38,26 @@ const PPWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  position: relative;
+
+  /* button {
+    display: none;
+    position: absolute;
+    z-index: 3;
+  } */
+
   img {
     width: 40px;
     border-radius: 50%;
     cursor: pointer;
   }
+
+  /* &:hover {
+    button {
+      display: block;
+    }
+  } */
 `;
 
 const AuthWrapper = styled.button`
